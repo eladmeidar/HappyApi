@@ -8,12 +8,19 @@ Gem::Specification.new do |gem|
   gem.version       = HappyApi::VERSION
   gem.authors       = ["Elad Meidar"]
   gem.email         = ["elad@eizesus.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{HappyApi (Joy Joy) is a RESTful based ORM}
+  gem.summary       = %q{HappyApi enables the use of extranal services as RESTful access points.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ["lib"]
+  gem.require_paths = ["lib", "lib/happy_api"]
+
+  gem.add_dependency "typhoeus"
+  gem.add_dependency "faraday"
+  gem.add_dependency "system_timer"
+  gem.add_dependency "activesupport"
+  gem.add_development_dependency "rspec"
+  gem.add_development_dependency "fakeweb"
 end
