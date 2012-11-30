@@ -49,14 +49,14 @@ module HappyApi
       end
 
       def api_request_format
-        @@api_request_format ||= "json"
+        @@api_request_format ||= :json
       end
 
       def api_request_format=(new_request_format)
-        if ["json", "xml"].include?(new_request_format.to_s.downcase) 
-          @@api_request_format = new_request_format.to_s.downcase
+        if [:json, :xml].include?(new_request_format.to_s.downcase.to_sym) 
+          @@api_request_format = new_request_format.to_s.downcase.to_sym
         else
-          @@api_request_format = "json"
+          @@api_request_format = :json
         end
       end
 
