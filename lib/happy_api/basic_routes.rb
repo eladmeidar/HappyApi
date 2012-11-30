@@ -30,7 +30,7 @@ module HappyApi
     module InstanceMethods
       def resource_path(with_format = true)
         self.class.tokenize_string(self.class.resource_path_with_tokens(with_format), {:api_resource_name => self.class.api_resource_name,
-                                                              :id => self.id, 
+                                                              :id => self.send(self.class.api_primary_key), 
                                                               :api_request_format => self.class.api_request_format })
       end
     end

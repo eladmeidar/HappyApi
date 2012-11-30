@@ -6,6 +6,7 @@ module HappyApi
         include HappyApi::BaseInterface
         include HappyApi::StringTokenizer
         include HappyApi::BasicRoutes
+        include HappyApi::Finders
       end
     end
     # Configuration block that yields this class
@@ -20,6 +21,14 @@ module HappyApi
         faraday.adapter   :typhoeus
         faraday.request   :url_encoded
       end
+    end
+
+    def self.api_primary_key
+      @@api_primary_key ||= :id
+    end
+    
+    def self.api_primary_key=(new_api_primary_key)
+      @@api_primary_key = new_api_primary_key.to_sym
     end
 
     def self.api_request_format

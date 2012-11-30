@@ -30,21 +30,6 @@ module HappyApi
         self.api_conn.get(args)
       end
     end
-
-    module InstanceMethods
-
-      def save
-      end
-
-      def refresh
-      end
-
-      def update
-      end
-
-      def destroy
-      end
-      
-    end
+    
   end
 end
