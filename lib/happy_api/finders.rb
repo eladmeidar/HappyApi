@@ -1,4 +1,4 @@
-module HappiApi
+module HappyApi
   module Finders
     def self.included(base)
       base.class_eval do
@@ -14,8 +14,11 @@ module HappiApi
     module ClassMethods
 
       ALLOWED_OPTIONS = [:includes, :conditions, :offset, :limit]
+      
       # Filter resources from all aspects
       def all(options = {})
+        sanitized_options = sanitized_options(options)
+
       end
 
       # Get resources that match a specific list of foreign keys

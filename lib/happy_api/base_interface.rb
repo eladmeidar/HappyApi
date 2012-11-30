@@ -29,7 +29,20 @@ module HappyApi
       def head(args)
         self.api_conn.get(args)
       end
-    end
-    
+    end # ClassMethods
+
+    module InstanceMethods
+
+      def new_record?
+
+        def primary_key
+          self.send(self.class.api_primary_key)
+        end
+
+        def new_record?
+          !(self.primary_key.nil?) && !(self.primary_key.empty?)
+        end
+      end
+    end # InstanceMethods
   end
 end

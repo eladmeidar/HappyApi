@@ -5,7 +5,8 @@ describe "#BasicRoutes" do
   it "should generate a simple route to a resource" do
     @user = User.new
 
-    @user.resource_path.should eql("elad")
+    @user.id = 1
+    @user.resource_path.should eql("/users/1.json")
   end
 
   it "should generate a simple route to resources" do
