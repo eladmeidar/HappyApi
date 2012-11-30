@@ -59,6 +59,18 @@ describe HappyApi::Configuration do
       User.api_request_format.should eql(:json)
     end
   end
+
+  describe "#api_resource_name" do
+    it "should default to the plualized class name" do
+      User.api_resource_name.should eql("users")
+    end
+
+    it "should reflect a change" do
+      User.api_resource_name =  "cat"
+      User.api_resource_name.should eql("cats")
+    end
+  end
+  
   describe "#configure" do
     it "should allow configuration of base url and port via block" do
       
