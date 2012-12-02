@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "#BasicRoutes" do
+describe HappyApi::BasicRoutes do
   
   it "should generate a simple route to a resource" do
     @user = User.new

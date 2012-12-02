@@ -3,10 +3,17 @@ module HappyApi
     def self.included(base)
       base.class_eval do
         extend ClassMethods
+
       end
     end
 
+    module Excpetions
+      class InvalidApiAddress < ArgumentError; end
+    end
+
     module ClassMethods
+
+      URL_REGEXP = Regexp.new("((https?|ftp|file):((//)|(\\\\))+[\w\d:\#@%/;$()~_?\+-=\\\\.&]*)")
 
       # Configuration block that yields this class
       def configure_api(&block)
@@ -66,11 +73,15 @@ module HappyApi
       end
 
       def api_resource_name=(new_resource_name)
-        @@api_resource_name = new_resource_name
+        @@api_resource_name = new_resource_name.underscore.pluralize
       end
 
       # Setter for the base url to access the API
       def api_base_url=(new_api_base_url)
+        if (new_api_base_url =~ URL_REGEXP).nil?
+          raise HappyApi::Configuration::Excpetions::InvalidApiAddress, "'#{new_api_base_url}' is an invalid url"
+        end
+
         @@api_base_url = new_api_base_url
       end
 

@@ -70,7 +70,30 @@ describe HappyApi::Configuration do
       User.api_resource_name.should eql("cats")
     end
   end
-  
+
+  describe "#api_base_url" do
+    it "should not accept invalid urls as values" do
+
+      lambda{
+        User.api_base_url = "dlfjkljksd"
+      }.should raise_error(HappyApi::Configuration::Excpetions::InvalidApiAddress)
+
+      lambda{
+        User.api_base_url = "shoko.com/koko"
+      }.should raise_error(HappyApi::Configuration::Excpetions::InvalidApiAddress)
+
+      lambda{
+        User.api_base_url = "htt://shoko.com/koko"
+      }.should raise_error(HappyApi::Configuration::Excpetions::InvalidApiAddress)
+    end
+
+    it "should accept a valid url" do
+      lambda{
+        User.api_base_url = "http://service.elad.com/"
+      }.should_not raise_error(HappyApi::Configuration::Excpetions::InvalidApiAddress)
+    end
+  end
+
   describe "#configure" do
     it "should allow configuration of base url and port via block" do
       

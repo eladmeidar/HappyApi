@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HappyApi::Base do
+describe HappyApi::BaseInterface do
 
   describe "basic HTTP interface" do
 

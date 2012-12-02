@@ -10,6 +10,7 @@ require 'string_tokenizer'
 require 'population'
 require "base"
 
+require 'uri'
 require 'faraday'
 require 'typhoeus'
 require 'typhoeus/adapters/faraday'
