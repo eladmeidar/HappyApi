@@ -8,6 +8,7 @@ require 'basic_routes'
 require 'finders'
 require 'string_tokenizer'
 require 'population'
+require 'associations'
 require "base"
 
 require 'uri'

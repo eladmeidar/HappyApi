@@ -5,4 +5,5 @@ class User < HappyApi::Base
   configure_api do |api|
   end
 
+  has_many :comments
 end

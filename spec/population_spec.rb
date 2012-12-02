@@ -9,8 +9,8 @@ describe HappyApi::Poplulation do
   end
 
   describe "Loose mode" do
-    it "should default to :loose mode behavior" do
-      User.api_population_mode.should eql(:loose)
+    it "should default to :strict mode behavior" do
+      User.api_population_mode.should eql(:strict)
     end
 
     it "should initialize an instance based on incoming population json" do
@@ -37,7 +37,7 @@ describe HappyApi::Poplulation do
 
         lambda {
           user = User.new_from_json('{"username": "elad", "age": 28}')
-        }.should raise_error(HappyApi::Poplulation::Exceptions::MissingAttribute, "attribute 'username' is missing for class User")
+        }.should raise_error(HappyApi::Poplulation::Exceptions::MissingAttribute)
     end
   end
 end

@@ -9,6 +9,7 @@ module HappyApi
         include HappyApi::Poplulation
         include HappyApi::BasicRoutes
         include HappyApi::Finders
+        include HappyApi::Associations
       end
     end 
   end

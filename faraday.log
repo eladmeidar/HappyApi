@@ -1,0 +1,65 @@
+# Logfile created on Sun Dec 02 11:36:34 +0200 2012 by logger.rb/1.2.6
+I, [2012-12-02T11:36:35.140392 #25207]  INFO -- : get http://eladistheking.com/cats.json?id=1
+D, [2012-12-02T11:36:35.140698 #25207] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:36:35.140881 #25207]  INFO -- Status: 0
+D, [2012-12-02T11:36:35.141028 #25207] DEBUG -- response: 
+I, [2012-12-02T11:36:45.271355 #25248]  INFO -- : get http://eladistheking.com/cats.json?id=1
+D, [2012-12-02T11:36:45.271679 #25248] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:36:45.271856 #25248]  INFO -- Status: 0
+D, [2012-12-02T11:36:45.271997 #25248] DEBUG -- response: 
+I, [2012-12-02T11:37:48.538674 #25327]  INFO -- : get http://eladistheking.com/cats.json?id=1
+D, [2012-12-02T11:37:48.539027 #25327] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:37:48.539272 #25327]  INFO -- Status: 0
+D, [2012-12-02T11:37:48.539444 #25327] DEBUG -- response: 
+I, [2012-12-02T11:39:52.318913 #25427]  INFO -- : get http://eladistheking.com/cats.json?id=1
+D, [2012-12-02T11:39:52.319289 #25427] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:39:52.319567 #25427]  INFO -- Status: 0
+D, [2012-12-02T11:39:52.319761 #25427] DEBUG -- response: 
+I, [2012-12-02T11:40:45.936208 #25501]  INFO -- : get http://eladistheking.com/cats.json?id=1
+D, [2012-12-02T11:40:45.936599 #25501] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:40:45.936856 #25501]  INFO -- Status: 0
+D, [2012-12-02T11:40:45.937056 #25501] DEBUG -- response: 
+I, [2012-12-02T11:42:34.509983 #25575]  INFO -- : get http://eladistheking.com/cats.json?id=1
+D, [2012-12-02T11:42:34.510376 #25575] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:42:34.510701 #25575]  INFO -- Status: 0
+D, [2012-12-02T11:42:34.510939 #25575] DEBUG -- response: 
+I, [2012-12-02T11:42:44.789728 #25591]  INFO -- : get http://eladistheking.com/cats.json?id=1
+D, [2012-12-02T11:42:44.790084 #25591] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:42:44.790341 #25591]  INFO -- Status: 0
+D, [2012-12-02T11:42:44.790510 #25591] DEBUG -- response: 
+I, [2012-12-02T11:54:37.212506 #25817]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T11:54:37.212639 #25817] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:54:37.212746 #25817]  INFO -- Status: 200
+D, [2012-12-02T11:54:37.212817 #25817] DEBUG -- response: 
+I, [2012-12-02T11:56:24.489017 #25897]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T11:56:24.489238 #25897] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:56:24.489347 #25897]  INFO -- Status: 200
+D, [2012-12-02T11:56:24.489413 #25897] DEBUG -- response: 
+I, [2012-12-02T11:58:58.673878 #26099]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T11:58:58.674000 #26099] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:58:58.674068 #26099]  INFO -- Status: 200
+D, [2012-12-02T11:58:58.674116 #26099] DEBUG -- response: 
+I, [2012-12-02T11:59:07.069996 #26114]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T11:59:07.070123 #26114] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:59:07.070221 #26114]  INFO -- Status: 200
+D, [2012-12-02T11:59:07.070297 #26114] DEBUG -- response: 
+I, [2012-12-02T11:59:09.298361 #26129]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T11:59:09.298501 #26129] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T11:59:09.298585 #26129]  INFO -- Status: 200
+D, [2012-12-02T11:59:09.298649 #26129] DEBUG -- response: 
+I, [2012-12-02T12:03:21.416206 #26194]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T12:03:21.416336 #26194] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T12:03:21.416406 #26194]  INFO -- Status: 200
+D, [2012-12-02T12:03:21.416461 #26194] DEBUG -- response: 
+I, [2012-12-02T12:03:42.211515 #26221]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T12:03:42.211658 #26221] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T12:03:42.211742 #26221]  INFO -- Status: 200
+D, [2012-12-02T12:03:42.211804 #26221] DEBUG -- response: 
+I, [2012-12-02T12:04:03.801475 #26257]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T12:04:03.801602 #26257] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T12:04:03.801664 #26257]  INFO -- Status: 200
+D, [2012-12-02T12:04:03.801710 #26257] DEBUG -- response: 
+I, [2012-12-02T12:04:12.509254 #26272]  INFO -- : get http://localhost/cats.json?id=1
+D, [2012-12-02T12:04:12.509382 #26272] DEBUG -- request: Content-Type: "application/x-www-form-urlencoded"
+I, [2012-12-02T12:04:12.509456 #26272]  INFO -- Status: 200
+D, [2012-12-02T12:04:12.509513 #26272] DEBUG -- response: 

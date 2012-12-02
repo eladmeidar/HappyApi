@@ -3,7 +3,9 @@ require 'bundler/setup'
 require 'fakeweb'
 
 require 'happy_api' # and any other gems you need
+require 'models/comment'
 require 'models/user'
+require 'models/cat'
 
 RSpec.configure do |config|
   # some (optional) config here

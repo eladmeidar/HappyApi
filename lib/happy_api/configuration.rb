@@ -3,7 +3,6 @@ module HappyApi
     def self.included(base)
       base.class_eval do
         extend ClassMethods
-
       end
     end
 
@@ -17,63 +16,72 @@ module HappyApi
 
       # Configuration block that yields this class
       def configure_api(&block)
-        yield(self)
+        block.call(self)
 
         # Setup Hydra
         Typhoeus::Config.memoize = false
-        @@hydra = Typhoeus::Hydra.new(:max_concurrency => 5)
+        @hydra = Typhoeus::Hydra.new(:max_concurrency => 5)
 
-        @@conn = Faraday.new(:url => self.api_end_point, :parallel_manager => self.hydra) do |faraday|
-          faraday.adapter   :typhoeus
+        @conn = Faraday.new(:url => self.api_end_point, :parallel_manager => self.hydra) do |faraday|
+          faraday.adapter   self.api_test_mode? ? :net_http : :typhoeus
           faraday.request   :url_encoded
+          faraday.use       Faraday::Response::Logger,          Logger.new("faraday.log")
         end
       end
 
       def api_primary_key
-        @@api_primary_key ||= :id
+        @api_primary_key ||= :id
       end
       
       def api_primary_key=(new_api_primary_key)
-        @@api_primary_key = new_api_primary_key.to_sym
+        @api_primary_key = new_api_primary_key.to_sym
       end
 
       def api_population_mode
-        @@api_population_mode ||= :strict
+        @api_population_mode ||= :strict
       end
 
       def api_population_mode=(new_population_mode)
         if [:strict, :loose].include?(new_population_mode.to_sym)
-          @@api_population_mode = new_population_mode.to_sym
+          @api_population_mode = new_population_mode.to_sym
         end
       end
 
       def strict_population?
-        @@api_population_mode == :strict
+        @api_population_mode == :strict
       end
 
       def loose_population?
-        @@api_population_mode == :loose
+        @api_population_mode == :loose
+      end
+
+      def api_test_mode=(mode = false)
+        @test_mode = mode
+      end
+
+      def api_test_mode?
+        @test_mode == true
       end
 
       def api_request_format
-        @@api_request_format ||= :json
+        @api_request_format ||= :json
       end
 
       def api_request_format=(new_request_format)
         if [:json, :xml].include?(new_request_format.to_s.downcase.to_sym) 
-          @@api_request_format = new_request_format.to_s.downcase.to_sym
+          @api_request_format = new_request_format.to_s.downcase.to_sym
         else
-          @@api_request_format = :json
+          @api_request_format = :json
         end
       end
 
       # Getter for the API resource name
       def api_resource_name
-        @@api_resource_name ||= self.name.underscore.pluralize
+        @api_resource_name ||= self.name.underscore.pluralize
       end
 
       def api_resource_name=(new_resource_name)
-        @@api_resource_name = new_resource_name.underscore.pluralize
+        @api_resource_name = new_resource_name.underscore.pluralize
       end
 
       # Setter for the base url to access the API
@@ -82,22 +90,22 @@ module HappyApi
           raise HappyApi::Configuration::Excpetions::InvalidApiAddress, "'#{new_api_base_url}' is an invalid url"
         end
 
-        @@api_base_url = new_api_base_url
+        @api_base_url = new_api_base_url
       end
 
       # Getter for the API base url
       def api_base_url
-        @@api_base_url ||= "http://localhost"
+        @api_base_url ||= "http://localhost"
       end
 
       # Setter for the API port
       def api_port=(new_api_port)
-        @@api_port=new_api_port.to_i
+        @api_port=new_api_port.to_i
       end
 
       # Getter for the API Port
       def api_port
-        @@api_port ||= 80
+        @api_port ||= 80
       end
 
       # Getter for the calculated end point for the API
@@ -115,14 +123,18 @@ module HappyApi
         Typhoeus::Config.verbose = verbose_mode
       end
 
+      def api_conn=(new_conn)
+        @conn = new_conn
+      end
+
       protected 
       
       def api_conn
-        @@conn
+        @conn
       end
       # Initialize or return an Hydra instance
       def hydra
-        @@hydra ||= Faraday::Adapter::Typhoeus.setup_parallel_manager
+        @hydra ||= Faraday::Adapter::Typhoeus.setup_parallel_manager
       end
     end # ClassMethods
   end
