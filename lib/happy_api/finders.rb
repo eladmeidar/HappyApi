@@ -26,7 +26,7 @@ module HappyApi
 
       # Get resources that match a specific list of foreign keys
       def find_by_ids(ids, options = {})
-        #api_conn.in_parallel do
+        api_conn.in_parallel do
           resp = api_conn.get(resources_path, {:id => ids.join(",")})
           resources = resp.body.collect {|json| self.new_from_json(json)}
           if resources.size == 1
@@ -34,7 +34,7 @@ module HappyApi
           end
 
           return resources
-        #end
+        end
       end
 
       # Get a specific resource
