@@ -13,9 +13,7 @@ module HappyApi
     module ClassMethods
 
       def new_from_json(json)
-        parsed_json = ActiveSupport::JSON.decode(json)
-
-        return populate_by_mode(parsed_json)
+        return populate_by_mode(json)
       end
 
       private
@@ -25,7 +23,7 @@ module HappyApi
         instance = self.new
                 
         json.each_pair do |attribute, value|
-          if !(instance.respond_to?(attribute))
+          if !(instance.respond_to?(:"#{attribute}="))
             if self.strict_population?
               raise(HappyApi::Poplulation::Exceptions::MissingAttribute,"attribute '#{attribute}' is missing for class #{self.name}")
             else

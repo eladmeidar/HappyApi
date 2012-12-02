@@ -25,22 +25,24 @@ describe HappyApi::Configuration do
     it "should reflect a change" do
       User.api_primary_key = :uuid
       User.api_primary_key.should eql(:uuid)
+      User.api_primary_key = :id
     end
   end
 
   describe "#api_population_mode" do
     it "should default to :strict" do
-      User.api_population_mode.should eql(:strict)
+      Cat.api_population_mode.should eql(:strict)
     end
 
     it "should reflect a change" do
-      User.api_population_mode = :loose
-      User.api_population_mode.should eql(:loose)
+      Cat.api_population_mode = :loose
+      Cat.api_population_mode.should eql(:loose)
     end
 
     it "should default to :loose when applied value is not in [:strict, :loose]" do
-      User.api_population_mode == :funky
-      User.api_population_mode.should eql(:loose)
+      Cat.api_population_mode == :funky
+      Cat.api_population_mode.should eql(:loose)
+      Cat.api_population_mode = :loose # just restoring defaults
     end
   end
 
@@ -68,6 +70,7 @@ describe HappyApi::Configuration do
     it "should reflect a change" do
       User.api_resource_name =  "cat"
       User.api_resource_name.should eql("cats")
+      User.api_resource_name = "user"
     end
   end
 
@@ -103,6 +106,8 @@ describe HappyApi::Configuration do
       end
 
       User.api_end_point.should eql("http://eladistheking.com")
+
+      User.api_base_url = "http://localhost"
     end
   end 
 end

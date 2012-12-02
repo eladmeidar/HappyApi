@@ -10,19 +10,19 @@ describe HappyApi::Poplulation do
 
   describe "Loose mode" do
     it "should default to :strict mode behavior" do
-      User.api_population_mode.should eql(:strict)
+      Cat.api_population_mode.should eql(:strict)
     end
 
     it "should initialize an instance based on incoming population json" do
 
-      user = User.new_from_json('{"username": "elad", "age": 28}')
+      user = User.new_from_json({"username" => "elad", "age" => 28})
 
       user.username.should eql("elad")
       user.age.should eql(28)
     end
 
     it "should reflect learned attributes on new instances after a loose initialization" do
-      user = User.new_from_json('{"username": "elad", "age": 28}')
+      user = User.new_from_json({"username" => "elad", "age" => 28})
 
       user2 = User.new
 
@@ -36,8 +36,10 @@ describe HappyApi::Poplulation do
         User.api_population_mode = :strict
 
         lambda {
-          user = User.new_from_json('{"username": "elad", "age": 28}')
+          user = User.new_from_json({"username" => "elad", "age" => 28})
         }.should raise_error(HappyApi::Poplulation::Exceptions::MissingAttribute)
+
+        User.api_population_mode = :loose
     end
   end
 end

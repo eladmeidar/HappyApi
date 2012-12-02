@@ -4,6 +4,7 @@ require 'fakeweb'
 
 require 'happy_api' # and any other gems you need
 require 'models/comment'
+require 'models/profile'
 require 'models/user'
 require 'models/cat'
 

@@ -19,10 +19,8 @@ module HappyApi
 
         self.reflections[association_name.to_s.underscore] = HappyApi::AssociationProxy.new(association_name, options.merge(:parent_class_name => self.name.underscore))
 
-        instance_eval do
-          define_method("#{association_name.to_s.underscore}") do
-            self.class.reflections[association_name.to_s.underscore]
-          end
+        class_eval do
+          attr_accessor :"#{association_name.to_s.underscore}"
         end
       end
 
@@ -52,15 +50,16 @@ class HappyApi::AssociationProxy
       associated_class = name.to_s.underscore.classify.constantize
     end
 
-    options = {
+    options = HashWithIndifferentAccess.new({
       :foreign_key => "#{options[:parent_class_name].underscore}_id",
       :associated_class => associated_class,
       :nested => false
-    }.merge(options)
+    }).merge(options)
 
     @foreign_key = options[:foreign_key]
     @associated_class = options[:associated_class]
     @name = name.to_s.underscore.to_sym
+
     @nested = [true, false].include?(options[:nested]) ? options[:nested] : false
   end
 

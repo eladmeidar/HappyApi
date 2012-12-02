@@ -12,9 +12,7 @@ require 'associations'
 require "base"
 
 require 'uri'
-require 'faraday'
-require 'typhoeus'
-require 'typhoeus/adapters/faraday'
+require 'httparty'
 
 module HappyApi
   # Your code goes here...

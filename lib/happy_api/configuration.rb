@@ -3,6 +3,8 @@ module HappyApi
     def self.included(base)
       base.class_eval do
         extend ClassMethods
+
+        include HTTParty
       end
     end
 
@@ -18,15 +20,8 @@ module HappyApi
       def configure_api(&block)
         block.call(self)
 
-        # Setup Hydra
-        Typhoeus::Config.memoize = false
-        @hydra = Typhoeus::Hydra.new(:max_concurrency => 5)
-
-        @conn = Faraday.new(:url => self.api_end_point, :parallel_manager => self.hydra) do |faraday|
-          faraday.adapter   self.api_test_mode? ? :net_http : :typhoeus
-          faraday.request   :url_encoded
-          faraday.use       Faraday::Response::Logger,          Logger.new("faraday.log")
-        end
+        base_uri(self.api_end_point)
+        format(api_request_format)
       end
 
       def api_primary_key
@@ -48,19 +43,11 @@ module HappyApi
       end
 
       def strict_population?
-        @api_population_mode == :strict
+        api_population_mode == :strict
       end
 
       def loose_population?
-        @api_population_mode == :loose
-      end
-
-      def api_test_mode=(mode = false)
-        @test_mode = mode
-      end
-
-      def api_test_mode?
-        @test_mode == true
+        api_population_mode == :loose
       end
 
       def api_request_format
@@ -89,8 +76,8 @@ module HappyApi
         if (new_api_base_url =~ URL_REGEXP).nil?
           raise HappyApi::Configuration::Excpetions::InvalidApiAddress, "'#{new_api_base_url}' is an invalid url"
         end
-
         @api_base_url = new_api_base_url
+        base_uri(self.api_end_point)
       end
 
       # Getter for the API base url
@@ -130,12 +117,9 @@ module HappyApi
       protected 
       
       def api_conn
-        @conn
+        self
       end
-      # Initialize or return an Hydra instance
-      def hydra
-        @hydra ||= Faraday::Adapter::Typhoeus.setup_parallel_manager
-      end
+
     end # ClassMethods
   end
 end
