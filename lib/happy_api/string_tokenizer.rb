@@ -8,6 +8,9 @@ module HappyApi
     end
 
     module ClassMethods
+
+      # Take a string and replace all instances of a "[*]" in it with the matching key value in the applied hash
+      # ex: "[name] is awesome", {:name => "elad"} => "elad is awesome"
       def tokenize_string(string = "", value_hash = {})
         replaced_string = string.clone
         value_hash.each_pair do |token, value|

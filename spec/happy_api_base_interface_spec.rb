@@ -38,7 +38,14 @@ describe HappyApi::BaseInterface do
       end
     end
 
+    describe "#primary_key" do
+      it "should return the value in :id" do
+        user = User.new
+        user.id = 1
 
+        user.primary_key.should eql(1)
+      end
+    end
   end
 
 
