@@ -21,6 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "faraday"
   gem.add_dependency "system_timer"
   gem.add_dependency "activesupport"
+  gem.add_dependency "yajl-ruby"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "fakeweb"
 end

@@ -27,11 +27,11 @@ module HappyApi
         json.each_pair do |attribute, value|
           if !(instance.respond_to?(attribute))
             if self.strict_population?
-              raise HappyApi::Poplulation::Exceptions::MissingAttribute "attribute '#{attribute}' is missing for class #{self.class.name}"
+              raise(HappyApi::Poplulation::Exceptions::MissingAttribute,"attribute '#{attribute}' is missing for class #{self.name}")
             else
 
               # If we are using the "loose", auto create the attr_accessor
-              self.class.class_eval do
+              instance.class.class_eval do
                 attr_accessor :"#{attribute}"
               end
             end

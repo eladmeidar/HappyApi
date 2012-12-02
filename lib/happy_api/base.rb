@@ -6,6 +6,7 @@ module HappyApi
         include HappyApi::Configuration
         include HappyApi::BaseInterface
         include HappyApi::StringTokenizer
+        include HappyApi::Poplulation
         include HappyApi::BasicRoutes
         include HappyApi::Finders
       end

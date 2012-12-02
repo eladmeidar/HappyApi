@@ -25,5 +25,21 @@ describe HappyApi::BaseInterface do
     end
   end
 
+  describe "#instance_methods" do
+
+    describe "#new_record?" do
+      it "should return true for a new resource" do
+        user = User.new
+        user.new_record?.should be_true
+      end
+
+      it "should return false for a loaded resource" do
+        pending "Not implemented"
+      end
+    end
+
+
+  end
+
 
 end
