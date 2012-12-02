@@ -17,8 +17,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib", "lib/happy_api"]
 
-  gem.add_dependency "typhoeus"
-  gem.add_dependency "faraday"
+  gem.add_dependency "httparty"
   gem.add_dependency "system_timer"
   gem.add_dependency "activesupport"
   gem.add_dependency "yajl-ruby"
