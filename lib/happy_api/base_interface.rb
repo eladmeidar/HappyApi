@@ -20,7 +20,7 @@ module HappyApi
         end
 
         def new_record?
-          self.primary_key.nil? || self.primary_key.empty?
+          self.primary_key.nil? || (self.primary_key.respond_to?(:empty?) && self.primary_key.empty?)
         end
     end # InstanceMethods
   end

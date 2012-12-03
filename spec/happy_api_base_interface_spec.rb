@@ -34,7 +34,9 @@ describe HappyApi::BaseInterface do
       end
 
       it "should return false for a loaded resource" do
-        pending "Not implemented"
+        @user = User.new_from_json({"username" => "elad", "id" => 3})
+
+        @user.new_record?.should be_false
       end
     end
 
