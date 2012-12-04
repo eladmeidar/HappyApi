@@ -27,6 +27,17 @@ describe HappyApi::BaseInterface do
     it "should respond to PURGE requests" do
       User.should respond_to(:purge)
     end
+
+    describe "#GET params sorting" do
+      
+      it "should keep get the same params order for the same params hash" do
+        pending "Query engine not implemented"
+      end
+
+      it "should generate a different order for different param names" do
+        pending "Query engine not implemented"
+      end
+    end
   end
 
   describe "#instance_methods" do
