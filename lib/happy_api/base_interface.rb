@@ -14,6 +14,10 @@ module HappyApi
 
     module InstanceMethods
 
+        def clear_cache
+          self.class.purge(self.resource_path).code == 200
+        end
+
         # Retrieve the primary key value
         def primary_key
           self.send(self.class.api_primary_key)

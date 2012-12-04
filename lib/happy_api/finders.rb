@@ -20,17 +20,11 @@ module HappyApi
       def all(options = {})
         sanitized_options = sanitize_options(options)
 
-        # TODO: sort params
         json_items = api_conn.get(self.resources_path, :query => options[:conditions]).parsed_response
 
-        resources = [json_items].flatten.collect {|json| self.new_from_json(json)}
-        if resources.size == 1
-          resources = resources.first
-        end
+        resources = process_response(json_items, options)
 
-        append_includes(resources, options[:includes])
-
-        return [resources].flatten
+        return [resources].flatten.compact
       end
 
       def first(options = {})
@@ -41,12 +35,7 @@ module HappyApi
         ids = ids.sort
         json_items = api_conn.get(self.resources_path, :query => {:id => ids.join(",")}).parsed_response
 
-        resources = [json_items].flatten.collect {|json| self.new_from_json(json)}
-        if resources.size == 1
-          resources = resources.first
-        end
-
-        append_includes(resources, options[:includes])
+        resources = process_response(json_items, options)
 
         return resources
       end
@@ -64,6 +53,17 @@ module HappyApi
       end
 
       protected
+
+      def process_response(json_items, options = {})
+        resources = [json_items].flatten.collect {|json| self.new_from_json(json)}
+        if resources.size == 1
+          resources = resources.first
+        end
+
+        append_includes(resources, options[:includes])
+
+        resources
+      end
 
       def append_includes(resources, reflections = [])
         return if reflections.nil? || reflections.empty?

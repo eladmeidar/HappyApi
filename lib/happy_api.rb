@@ -16,6 +16,7 @@ require "base"
 
 require 'uri'
 require 'httparty'
+require 'core_ext/httparty/request'
 
 module HappyApi
   # Your code goes here...

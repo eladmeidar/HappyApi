@@ -20,8 +20,10 @@ module HappyApi
       
       def populate_by_mode(json)
 
+        return nil if json.nil? || (json.respond_to?(:empty?) && json.empty?) || (json.respond_to?(:keys) && json.keys.size == 0)
+
         instance = self.new
-                
+  
         json.each_pair do |attribute, value|
           if !(instance.respond_to?(:"#{attribute}="))
             if self.strict_population?

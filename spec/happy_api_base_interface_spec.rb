@@ -31,7 +31,12 @@ describe HappyApi::BaseInterface do
     describe "#GET params sorting" do
       
       it "should keep get the same params order for the same params hash" do
-        pending "Query engine not implemented"
+        FakeWeb.register_uri(:get, "http://localhost/users.json?age=3&name=elad", :status => 200)
+
+        3.times do
+          User.all(:conditions => {:name => "elad", :age => 3}).should eql([])
+        end
+        
       end
 
       it "should generate a different order for different param names" do
@@ -41,6 +46,15 @@ describe HappyApi::BaseInterface do
   end
 
   describe "#instance_methods" do
+
+    describe "#clear_cache" do
+      it "should respond with 200 for an existing resource" do
+        FakeWeb.register_uri(:purge, "http://localhost/users/10.json", :status => 200)
+        @user = User.new()
+        @user.id = 10
+        @user.clear_cache.should be_true
+      end
+    end
 
     describe "#new_record?" do
       it "should return true for a new resource" do
