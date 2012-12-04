@@ -23,6 +23,10 @@ describe HappyApi::BaseInterface do
     it "should respond to HEAD requests" do
       User.should respond_to(:head)
     end
+
+    it "should respond to PURGE requests" do
+      User.should respond_to(:purge)
+    end
   end
 
   describe "#instance_methods" do
