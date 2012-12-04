@@ -10,11 +10,15 @@ module HappyApi
 
     module ClassMethods
 
+      def expire_cache(uri = nil)
+        return if uri.nil?
+        self.purge(uri).code == 200
+      end
     end # ClassMethods
 
     module InstanceMethods
 
-        def clear_cache
+        def expire_cache
           self.class.purge(self.resource_path).code == 200
         end
 

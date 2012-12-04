@@ -52,7 +52,7 @@ describe HappyApi::BaseInterface do
         FakeWeb.register_uri(:purge, "http://localhost/users/10.json", :status => 200)
         @user = User.new()
         @user.id = 10
-        @user.clear_cache.should be_true
+        @user.expire_cache.should be_true
       end
     end
 
